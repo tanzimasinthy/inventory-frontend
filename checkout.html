@@ -119,7 +119,8 @@
         {
             "itemName": "dummy",
             "price": 0,
-            "quantity": 0
+            "quantity": 0,
+            "total": 0
         }
     ];
     let totalFinal = 0;
@@ -258,7 +259,7 @@
             checkOutDTOS: itemList,
             customerName: customerName.toString(),
             mobileNumber: phoneNumber.toString(),
-            total: parseInt(total)
+            total: parseInt(totalFinal)
         }
 
 
@@ -281,7 +282,7 @@
                     checkOutDTOS: itemList,
                     customerName: customerName.toString(),
                     mobileNumber: phoneNumber.toString(),
-                    total: parseInt(total)
+                    total: parseInt(totalFinal)
 
                 }),
 
