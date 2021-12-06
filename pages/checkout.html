@@ -265,7 +265,7 @@
         console.log("data:", data1)
         $.ajax(
             {
-                url: "http://localhost:8089/checkout",
+                url: "http://localhost:8080/checkout",
                 type: "POST",
                 contentType: "application/json",
                 headers:
@@ -301,7 +301,7 @@
         $("#receipts tbody").empty();
         //console.log('http call: ' + uri + "/" + documentShareId)
         $.ajax({
-            url: "http://localhost:8089/product/all-categories",
+            url: "http://localhost:8080/product/all-categories",
             type: "GET",
             contentType: "application/json;",
             headers:
