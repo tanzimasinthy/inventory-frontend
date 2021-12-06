@@ -49,24 +49,53 @@
             <h2>Checkout</h2>
         </div>
     </div>
+
     <div class="row">
-
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" name="customerName" id="name-field" placeholder="Customer Name">
-            </div>
-        <br>
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" name="customerName" id="mobile-number-field"
-                       placeholder="Mobile Number">
-            </div>
-
-
-            <!--			<input type="text" name="customerName" id="name-field" class="input-group" placeholder="Customer Name">-->
-            <!--			<input type="text" name="mobileNumber" id="mobile-number-field" class="input-group" placeholder="Mobile Number">-->
-        <br>
-            <input class="mb-5 btn btn-primary" type="submit" value="Checkout" onclick="submit()">
-
+        <div class="col-sm-2">
+            <label for="exampleInputName2">Category</label>
+        </div>
+        <div class="col-sm-4">
+            <select class="form-control" id="category">
+                <option value="0">select one</option>
+            </select>
+        </div>
     </div>
+    <br>
+
+    <div class="row">
+        <div class="col-sm-2">
+            <label for="exampleInputName2">Category</label>
+        </div>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="customerName" id="name-field" placeholder="Customer Name">
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-sm-2">
+            <label for="exampleInputName2">Category</label>
+        </div>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="customerName" id="mobile-number-field"
+                   placeholder="Mobile Number">
+        </div>
+    </div>
+
+
+
+
+<!--    <div class="row">-->
+
+<!--        &lt;!&ndash;			<input type="text" name="customerName" id="name-field" class="input-group" placeholder="Customer Name">&ndash;&gt;-->
+<!--        &lt;!&ndash;			<input type="text" name="mobileNumber" id="mobile-number-field" class="input-group" placeholder="Mobile Number">&ndash;&gt;-->
+<!--        <br>-->
+<!--        -->
+
+<!--    </div>-->
+
+
     <div class="row">
         <div class="col-6">
             <div id="receipts">
@@ -82,6 +111,7 @@
                     <tbody>
 
                     </tbody>
+
                 </table>
             </div>
         </div>
@@ -101,11 +131,23 @@
                     <tbody>
 
                     </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="4" style="text-align: right"><span id="grandTotal">0</span></td>
+                    </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
 
 
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-sm-4">
+            <input class="mb-5 btn btn-primary" type="submit" value="Checkout" onclick="submit()">
+        </div>
     </div>
 </div>
 
@@ -187,8 +229,10 @@
                 '</td><td>' + totalFinal +
                 '</td></tr>'
             )
-
+            $("#grandTotal").html(totalFinal + totalFinal);
         });
+
+
 
 
         /*    $('#checkout tbody').append(
@@ -298,5 +342,58 @@
         )
     }
 
+    function fetchAllCategory() {
+        $("#receipts tbody").empty();
+        //console.log('http call: ' + uri + "/" + documentShareId)
+        $.ajax({
+            url: "http://localhost:8089/product/all-categories",
+            type: "GET",
+            contentType: "application/json;",
+            headers:
+                {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Credentials': 'true',
+                    'requester': '{"username": "admin@asd.com","authorities": "ROLE_ADMIN"}'
+
+                },
+
+
+            cache: false,
+            success: function (receipts) {
+                //console.log(receipts);
+
+                $(receipts.data).each(function (index, item) {
+                    console.log("item " + item);
+                    //console.log(receipts[index]);
+
+                    $.each(item, function(val, text) {
+                        $("#category").append(
+                            $('<option></option>').val(item.category).html(text)
+                        );
+                    });
+
+                });
+
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest);
+                console.log(textStatus);
+                console.log(errorThrown);
+
+            }
+
+        });
+    }
+
+    $(document).ready(function (){
+        fetchAllCategory();
+    });
+
+    $(function (){
+       // alert('test')
+    });
 </script>
 </html>
