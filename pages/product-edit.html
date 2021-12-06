@@ -25,7 +25,7 @@
         <input type="text" name="product" id="product-field" class="product-form-field" placeholder="product">
         <input type="text" name="price" id="price-field" class="product-form-field" placeholder="price">
         <input type="text" name="quantity" id="quantity-field" class="product-form-field" placeholder="quantity">
-        <input type="submit" value="Update" onclick="productAction()">
+        <input type="submit" value="Update" onclick="productChange()">
     </main>
 
 </article>
@@ -46,7 +46,7 @@
 <footer id="pageFooter">@Copyright</footer>
 
 <script src="../js/main.js">
-    function productAction()
+    function productChange()
     {
         let category = document.getElementById("category-field").value
         let name = document.getElementById("product-field").value
@@ -55,7 +55,7 @@
         $.ajax(
             {
                 url: "http://localhost:8080/product/{id}",
-                type: "POST",
+                type: "PUT",
                 accept: "application/json",
                 contentType: "application/json",
                 headers:

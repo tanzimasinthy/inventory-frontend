@@ -5,16 +5,20 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>Document</title>
+
+    <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body onload="fetchAllProducts()">
-
 
 <header id="pageHeader">
     <h1>XYZ General Store</h1>
     <h4>Add New Product</h4>
 </header>
+
 
 <article id="mainArticle">
 
@@ -48,7 +52,9 @@
         </div>
 
         <div class="row">
+            <div class="col-sm-4">
                 <input class="button" type="submit" value="Checkout" onclick="submit()">
+            </div>
         </div>
     </div>
 
@@ -82,11 +88,11 @@
                 <tbody>
 
                 </tbody>
-                <tfoot>
-                <tr>
-                    <td colspan="4" style="text-align: right"><span id="grandTotal">0</span></td>
-                </tr>
-                </tfoot>
+<!--                <tfoot>-->
+<!--                <tr>-->
+<!--                    <td colspan="4" style="text-align: right"><span id="grandTotal">0</span></td>-->
+<!--                </tr>-->
+<!--                </tfoot>-->
             </table>
         </div>
     </div>
@@ -107,6 +113,7 @@
 </nav>
 
 <footer id="pageFooter">@Copyright</footer>
+</body>
 
 <script src="../js/main.js"></script>
 
@@ -200,7 +207,7 @@
         */
     })
 
-  function fetchAllProduct() {
+    function fetchAllProducts() {
         $("#receipts tbody").empty();
         //console.log('http call: ' + uri + "/" + documentShareId)
         $.ajax({
@@ -216,6 +223,8 @@
                     'requester': '{"username": "admin@asd.com","authorities": "ROLE_ADMIN"}'
 
                 },
+
+
             cache: false,
             success: function (receipts) {
                 //console.log(receipts);
@@ -225,12 +234,11 @@
                     //console.log(receipts[index]);
 
                     $('#receipts tbody').append(
-                        '<tr>' +
-                        '<td>' + item.name + '</td>' +
-                        '<td>' + item.price + '</td>' +
-                        '<td>' + item.category + '</td>' +
-                        '<td>' + item.quantity + '</td>' +
-                        '</tr>'
+                        '<tr><td>' + item.name +
+                        '</td><td>' + item.price +
+                        '</td><td>' + item.category +
+                        '</td><td>' + item.quantity +
+                        '</td></tr>'
                     )
 
                 });
@@ -246,6 +254,7 @@
 
         });
     }
+
     function submit() {
 
 
@@ -299,7 +308,7 @@
         $("#receipts tbody").empty();
         //console.log('http call: ' + uri + "/" + documentShareId)
         $.ajax({
-            url: "http://localhost:8080/product/all-categories",
+            url: "http://localhost:8080/category/category-list",
             type: "GET",
             contentType: "application/json;",
             headers:
@@ -323,7 +332,7 @@
 
                     $.each(item, function(val, text) {
                         $("#category").append(
-                            $('<option></option>').val(item.category).html(text)
+                            $('<option></option>').val(item.name).html(text)
                         );
                     });
 
@@ -346,7 +355,7 @@
     });
 
     $(function (){
-       // alert('test')
+        // alert('test')
     });
 </script>
 </html>

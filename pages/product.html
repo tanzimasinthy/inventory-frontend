@@ -22,11 +22,15 @@
 
     <main id="main-holder">
         <h1>Create Product</h1>
-        <input type="text" name="category" id="category-field" class="product-form-field" placeholder="category">
-        <input type="text" name="product" id="product-field" class="product-form-field" placeholder="product">
-        <input type="text" name="price" id="price-field" class="product-form-field" placeholder="price">
-        <input type="text" name="quantity" id="quantity-field" class="product-form-field" placeholder="quantity">
-        <input type="submit" value="Enter" onclick="productAction()">
+        <input style=" border-collapse: separate; border-spacing: 15px;padding-left: 20px; padding-top: 10px; padding-right: 20px;" type="text" name="category" id="category-field" class="product-form-field" placeholder="category">
+        <br>
+        <input style="padding-left: 20px; padding-top: 10px; padding-right: 20px;" type="text" name="product" id="product-field" class="product-form-field" placeholder="product">
+        <br>
+        <input style="padding-left: 20px; padding-top: 10px; padding-right: 20px;" type="text" name="price" id="price-field" class="product-form-field" placeholder="price">
+        <br>
+        <input style="padding-left: 20px; padding-top: 10px; padding-right: 20px;" type="text" name="quantity" id="quantity-field" class="product-form-field" placeholder="quantity">
+        <br>
+        <input class="button" type="submit" value="Enter" onclick="productAction()">
     </main>
 
 </article>
@@ -79,8 +83,8 @@
                 dataType: 'json',
                 success: function (response)
                 {
-                    //alert("success");
-                    location.href='product-list.html';
+                    alert("success");
+                    location.href='index.html';
 
                 }
                 , error: function (error) {
