@@ -14,15 +14,13 @@
   <main id="main-holder">
     <h1>Login</h1>
 	 <input type="text" name="username" id="username-field" class="login-form-field" placeholder="username">
-	 <div class="row">
-		<input style="margin-left: 50px;" type="password" name="password" id="password-field" class="login-form-field" placeholder="password">
-		<input type="submit" value="Login" style="margin-bottom:5px;"onclick="loginAction()">
-	 </div>
+	 <input type="password" name="password" id="password-field" class="login-form-field" placeholder="password">
 	 <div class="container">
 		<div class="row">
-		<button style="margin-left: 50px;" onclick="location.href='registration.html'">Registration</button>
-		<button style="margin-left: 10px;"onclick="location.href='change-password.html'">Forget Password</button>
+		<input type="submit" value="Login" style="margin-bottom:5px;"onclick="loginAction()">
+		<button onclick="location.href='registration.html'">Registration</button>
 		</div>
+		<button onclick="location.href='change-password.html'">Change Password</button>
 	</div>
   </main>
 </body>
@@ -60,7 +58,7 @@
                 {
 					console.log(response);
 					if (response.message === "Success"){
-						location.href='main-menu.html';
+						location.href='index.html';
 					} else {
 						alert("Unauthorized User");
 					}

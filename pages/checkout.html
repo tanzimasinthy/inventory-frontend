@@ -100,8 +100,8 @@
         <li><a href="checkout.html">Checkout</a></li>
         <li><a href="transactionLog.html">Transaction Log</a></li>
         <li><a href="product-edit.html">Edit Products</a></li>
-        <li><a href="#">Change Password</a></li>
-        <li><a href="#">Logout</a></li>
+        <li><a href="change-password.html">Change Password</a></li>
+        <li><a href="login.html">Logout</a></li>
     </ul>
 
 </nav>
@@ -200,7 +200,7 @@
         */
     })
 
-    function fetchAllProducts() {
+  function fetchAllProduct() {
         $("#receipts tbody").empty();
         //console.log('http call: ' + uri + "/" + documentShareId)
         $.ajax({
@@ -216,8 +216,6 @@
                     'requester': '{"username": "admin@asd.com","authorities": "ROLE_ADMIN"}'
 
                 },
-
-
             cache: false,
             success: function (receipts) {
                 //console.log(receipts);
@@ -227,11 +225,12 @@
                     //console.log(receipts[index]);
 
                     $('#receipts tbody').append(
-                        '<tr><td>' + item.name +
-                        '</td><td>' + item.price +
-                        '</td><td>' + item.category +
-                        '</td><td>' + item.quantity +
-                        '</td></tr>'
+                        '<tr>' +
+                        '<td>' + item.name + '</td>' +
+                        '<td>' + item.price + '</td>' +
+                        '<td>' + item.category + '</td>' +
+                        '<td>' + item.quantity + '</td>' +
+                        '</tr>'
                     )
 
                 });
@@ -247,7 +246,6 @@
 
         });
     }
-
     function submit() {
 
 
