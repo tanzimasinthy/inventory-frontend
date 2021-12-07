@@ -60,6 +60,9 @@
 <script src="../js/main.js"></script>
 <script>
 
+	var dateObject = new Date(item.date);
+	var Date = dateObject.toString();
+
 
 	function fetchAllReceipts() {
 		$("#receipts tbody").empty();
@@ -84,19 +87,19 @@
 				$(receipts.data).each(function (index, item) {
 					console.log("item " + item);
 					//console.log(receipts[index]);
-					let products= "";
-					for(col = 0; col < item.items.length; col++) {
-						products = products + ", " + item.items[col]
-					}
+					var dateObject = new Date(item.date);
+					var date = dateObject.toUTCString();
+
 					$('#receipts tbody').append(
 							'<tr><td>' + item.billNo +
 							'</td><td>' + item.items +
 							'</td><td>' + item.customerName +
 							'</td><td>' + item.mobileNumber +
 							'</td><td>' + item.total +
-							'</td><td>' + Date +
+							'</td><td>' + date +
 							'</td></tr>'
 					)
+
 
 
 				});

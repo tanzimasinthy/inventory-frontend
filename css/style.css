@@ -79,7 +79,6 @@ header, footer, article, nav, div {
 }
 .product_details label, .customer_details label{
     width: 70px;
-    padding: 0 15px;
     display: inline-block;
 }
 
