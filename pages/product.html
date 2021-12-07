@@ -22,10 +22,22 @@
 
     <main id="main-holder">
         <h1>Create Product</h1>
-        <input style=" border-collapse: separate; border-spacing: 15px;padding-left: 20px; padding-top: 10px; padding-right: 20px;" type="text" name="category" id="category-field" class="product-form-field" placeholder="category">
-        <input style="padding-left: 20px; padding-top: 10px; padding-right: 20px;" type="text" name="product" id="product-field" class="product-form-field" placeholder="product">
-        <input style="padding-left: 20px; padding-top: 10px; padding-right: 20px;" type="text" name="price" id="price-field" class="product-form-field" placeholder="price">
-        <input style="padding-left: 20px; padding-top: 10px; padding-right: 20px;" type="text" name="quantity" id="quantity-field" class="product-form-field" placeholder="quantity">
+        <input style=" padding: 20px 50px; border-radius: 10px;display: inline-block; border: 1px solid #ccc; text-align: left "
+               type="text" name="category" id="category-field" class="product-form-field" placeholder="category">
+        <br>
+        <br>
+        <input style="padding: 20px 50px;border-radius: 10px; display: inline-block; border: 1px solid #ccc" type="text"
+               name="product" id="product-field" class="product-form-field" placeholder="product">
+        <br>
+        <br>
+        <input style="padding: 20px 50px;border-radius: 10px; display: inline-block; border: 1px solid #ccc" type="text"
+               name="price" id="price-field" class="product-form-field" placeholder="price">
+        <br>
+        <br>
+        <input style="padding: 20px 50px; border-radius: 10px; display: inline-block; border: 1px solid #ccc"
+               type="text" name="quantity" id="quantity-field" class="product-form-field" placeholder="quantity">
+        <br>
+        <br>
         <input class="button" type="submit" value="Enter" onclick="productAction()">
     </main>
 
@@ -47,9 +59,10 @@
 <footer id="pageFooter">@Copyright</footer>
 
 <script src="../js/main.js">
+</script>
+<script>
 
-    function productAction()
-    {
+    function productAction() {
         let category = document.getElementById("category-field").value
         let name = document.getElementById("product-field").value
         let price = document.getElementById("price-field").value
@@ -70,17 +83,17 @@
 
                     },
                 data: JSON.stringify({
-                    name:  name.toString(),
-                    price : parseInt(price),
-                    category : category.toString(),
+                    name: name.toString(),
+                    price: parseInt(price),
+                    category: category.toString(),
                     quantity: parseInt(quantity)
 
                 }),
                 dataType: 'json',
-                success: function (response)
-                {
+                success: function (response) {
                     alert("success");
-                    location.href='index.html';
+                    window.location.replace("index.html");
+                    // window.location.href='';
 
                 }
                 , error: function (error) {

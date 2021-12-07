@@ -1,159 +1,121 @@
+<!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>checkout</title>
+    <title>Document</title>
+
     <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
-    <!--  <style>-->
-
-
-    <!--table, th, td {-->
-    <!--  border: 1px solid black;-->
-    <!--}-->
-    <!--.row {-->
-    <!--  display: flex;-->
-    <!--}-->
-    <!--.column {-->
-    <!--  float: left;-->
-    <!--  width: 50%;-->
-    <!--}-->
-
-    <!--.table tr:hover {-->
-    <!--   background-color: #C0C0C0;-->
-    <!--   cursor:pointer;-->
-    <!--}-->
-    <!--</style>-->
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body onload="fetchAllProducts()">
 
-<div class="container">
+<header id="pageHeader">
+    <h1>XYZ General Store</h1>
+    <h4>Add New Product</h4>
+</header>
 
-    <div class="row">
-        <div class="col">
-            <h2>Checkout</h2>
+
+<article id="mainArticle">
+
+    <div class="container">
+            <h3>PRODUCT DETAILS</h3>
+            <div class="product_details">
+                <label >Category</label>
+                <select onchange="filterAllProducts(this)" class="form-control" id="category">
+                    <option value="">select one</option>
+                </select>
+                <br>
+                <br>
+                <label >Search</label>
+                <input type="text" class="form-control" name="search" id="search-field" placeholder="search">
+            </div>
+        <div id="receipts">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+
+            </table>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-sm-2">
-            <label for="category">Category</label>
-        </div>
-        <div class="col-sm-4">
-            <select class="form-control" id="category">
-                <option value="0">select one</option>
-            </select>
-        </div>
-    </div>
-    <br>
-
-    <div class="row">
-        <div class="col-sm-2">
-            <label for="category">Category</label>
-        </div>
-        <div class="col-sm-4">
-            <input type="text" class="form-control" name="customerName" id="name-field" placeholder="Customer Name">
-        </div>
-    </div>
-
-    <br>
-
-    <div class="row">
-        <div class="col-sm-2">
-            <label for="category">Category</label>
-        </div>
-        <div class="col-sm-4">
-            <input type="text" class="form-control" name="customerName" id="mobile-number-field"
-                   placeholder="Mobile Number">
-        </div>
-    </div>
-
-
-
-
-<!--    <div class="row">-->
-
-<!--        &lt;!&ndash;			<input type="text" name="customerName" id="name-field" class="input-group" placeholder="Customer Name">&ndash;&gt;-->
-<!--        &lt;!&ndash;			<input type="text" name="mobileNumber" id="mobile-number-field" class="input-group" placeholder="Mobile Number">&ndash;&gt;-->
-<!--        <br>-->
-<!--        -->
-
-<!--    </div>-->
-
-
-    <div class="row">
-        <div class="col-6">
-            <div id="receipts">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Category</th>
-                        <th>Quantity</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-
-                </table>
+        <div class="row">
+            <div class="col-sm-4">
+                <input class="button" type="submit" value="Checkout" onclick="submit()">
             </div>
         </div>
-
-        <div class="col-6">
-            <div id="checkout" style="display:contents">
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Total</th>
-                        <th>Sub Total</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                    <tfoot>
-                    <tr>
-                        <td colspan="4" style="text-align: right"><span id="grandTotal">0</span></td>
-                    </tr>
-                    </tfoot>
-                </table>
-            </div>
-        </div>
-
-
     </div>
 
-    <br>
-    <div class="row">
-        <div class="col-sm-4">
-            <input class="mb-5 btn btn-primary" type="submit" value="Checkout" onclick="submit()">
+</article>
+
+<div id="siteAds">
+    <h3>CUSTOMER DETAILS</h3>
+    <div class="customer_details">
+        <label for="name-field">Name</label>
+        <input type="text" class="form-control" name="customerName" id="name-field"
+               placeholder="Customer Name">
+        <br>
+        <br>
+        <label for="mobile-number-field">Mobile</label>
+        <input type="text" class="form-control" name="customerName" id="mobile-number-field"
+               placeholder="Mobile Number">
+    </div>
+
+    <div class="table">
+        <div id="checkout" style="display:contents">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th>Sub Total</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+<!--                <tfoot>-->
+<!--                <tr>-->
+<!--                    <td colspan="4" style="text-align: right"><span id="grandTotal">0</span></td>-->
+<!--                </tr>-->
+<!--                </tfoot>-->
+            </table>
         </div>
     </div>
+
 </div>
 
+<nav id="mainNav">
+    <ul>
+        <li><a href="../index.html">Main Menu</a></li>
+        <li><a href="product.html">Add Product</a></li>
+        <li><a href="checkout.html">Checkout</a></li>
+        <li><a href="transactionLog.html">Transaction Log</a></li>
+        <li><a href="product-edit.html">Edit Products</a></li>
+        <li><a href="change-password.html">Change Password</a></li>
+        <li><a href="login.html">Logout</a></li>
+    </ul>
 
-</main>
+</nav>
+
+<footer id="pageFooter">@Copyright</footer>
 </body>
+
+<script src="../js/main.js"></script>
 
 <script>
     //var itemList = new Array(40);
@@ -346,7 +308,7 @@
         $("#receipts tbody").empty();
         //console.log('http call: ' + uri + "/" + documentShareId)
         $.ajax({
-            url: "http://localhost:8080/product/all-categories",
+            url: "http://localhost:8080/category/category-list",
             type: "GET",
             contentType: "application/json;",
             headers:
@@ -365,15 +327,10 @@
                 //console.log(receipts);
 
                 $(receipts.data).each(function (index, item) {
-                    console.log("item " + item);
-                    //console.log(receipts[index]);
-
-                    $.each(item, function(val, text) {
-                        $("#category").append(
-                            $('<option></option>').val(item.category).html(text)
-                        );
-                    });
-
+					var opt;
+					 opt += ' <option>' + item.name + '</option>';
+					  $("#category").append(opt);
+					  
                 });
 
 
@@ -387,13 +344,76 @@
 
         });
     }
+	
+	function filterAllProducts(catagoryName) {
+			console.log("hi..",catagoryName.value);
+			
+			$("#receipts tbody").empty();
+			//console.log('http call: ' + uri + "/" + documentShareId)
+			$.ajax({
+			url: "http://localhost:8080/product/category-list?category=" + catagoryName.value,
+			type: "GET",
+			contentType: "application/json;",
+			headers:
+			{
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Credentials': 'true',
+			'requester': '{"username": "admin@asd.com","authorities": "ROLE_ADMIN"}'
+
+
+
+			},
+
+			cache: false,
+			success: function (receipts) {
+			//console.log(receipts);
+
+
+
+			$(receipts.data).each(function (index, item) {
+			console.log("item " + item);
+			//console.log(receipts[index]);
+
+
+
+			$('#receipts tbody').append(
+			'<tr><td>' + item.name +
+			'</td><td>' + item.price +
+			'</td><td>' + item.category +
+			'</td><td>' + item.quantity +
+			'</td></tr>'
+			)
+
+	});
+
+
+
+
+},
+error: function (XMLHttpRequest, textStatus, errorThrown) {
+console.log(XMLHttpRequest);
+console.log(textStatus);
+console.log(errorThrown);
+
+
+
+}
+
+
+
+});
+}
 
     $(document).ready(function (){
         fetchAllCategory();
     });
 
+
     $(function (){
-       // alert('test')
+        // alert('test')
     });
+
 </script>
 </html>

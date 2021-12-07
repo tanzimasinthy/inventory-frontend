@@ -26,8 +26,8 @@
             <h3>PRODUCT DETAILS</h3>
             <div class="product_details">
                 <label >Category</label>
-                <select class="form-control" id="category">
-                    <option value="0">select one</option>
+                <select onchange="filterAllProducts(this)" class="form-control" id="category">
+                    <option value="">select one</option>
                 </select>
                 <br>
                 <br>
@@ -184,13 +184,12 @@
             //console.log(receipts[index]);
 
             $('#checkout tbody').append(
-                '<tr>' +
-                '<td>' + item.itemName + '</td>' +
-                '<td>' + item.quantity + '</td>' +
-                '<td>' + item.price + '</td>' +
-                '<td>' + item.total + '</td>' +
-                '<td>' + totalFinal + '</td>' +
-                '</tr>'
+                '<tr><td>' + item.itemName +
+                '</td><td>' + item.quantity +
+                '</td><td>' + item.price +
+                '</td><td>' + item.total +
+                '</td><td>' + totalFinal +
+                '</td></tr>'
             )
             $("#grandTotal").html(totalFinal + totalFinal);
         });
@@ -235,12 +234,11 @@
                     //console.log(receipts[index]);
 
                     $('#receipts tbody').append(
-                        '<tr>' +
-                        '<td>' + item.name + '</td>' +
-                        '<td>' + item.price + '</td>' +
-                        '<td>' + item.category + '</td>' +
-                        '<td>' + item.quantity + '</td>' +
-                        '</tr>'
+                        '<tr><td>' + item.name +
+                        '</td><td>' + item.price +
+                        '</td><td>' + item.category +
+                        '</td><td>' + item.quantity +
+                        '</td></tr>'
                     )
 
                 });
@@ -295,11 +293,18 @@
                 }),
 
                 dataType: 'json',
-                success: function (response) {
-                    alert("success");
+                success: function (response)
+                {
+                    console.log(response);
+                    if (response.message === "Success"){
+                        location.href='transactionLog.html';
+                    } else {
+                        alert("Stock Out");
+                    }
 
-                }
-                , error: function (error) {
+
+                },
+                error: function (error) {
                     alert(error.message);
                 }
             }
@@ -328,17 +333,11 @@
             success: function (receipts) {
                 //console.log(receipts);
 
-
                 $(receipts.data).each(function (index, item) {
-                    console.log("item " + item);
-                    //console.log(receipts[index]);
-
-                   // $.each(item, function(val, text) {
-                        $("#category").append(
-                            $('<option></option>').val(item.name).html(item.name)
-                        );
-                 //   });
-
+					var opt;
+					 opt += ' <option>' + item.name + '</option>';
+					  $("#category").append(opt);
+					  
                 });
 
 
@@ -352,80 +351,76 @@
 
         });
     }
+	
+	function filterAllProducts(catagoryName) {
+			console.log("hi..",catagoryName.value);
+			
+			$("#receipts tbody").empty();
+			//console.log('http call: ' + uri + "/" + documentShareId)
+			$.ajax({
+			url: "http://localhost:8080/product/category-list?category=" + catagoryName.value,
+			type: "GET",
+			contentType: "application/json;",
+			headers:
+			{
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Credentials': 'true',
+			'requester': '{"username": "admin@asd.com","authorities": "ROLE_ADMIN"}'
+
+
+
+			},
+
+			cache: false,
+			success: function (receipts) {
+			//console.log(receipts);
+
+
+
+			$(receipts.data).each(function (index, item) {
+			console.log("item " + item);
+			//console.log(receipts[index]);
+
+
+
+			$('#receipts tbody').append(
+			'<tr><td>' + item.name +
+			'</td><td>' + item.price +
+			'</td><td>' + item.category +
+			'</td><td>' + item.quantity +
+			'</td></tr>'
+			)
+
+	});
+
+
+
+
+},
+error: function (XMLHttpRequest, textStatus, errorThrown) {
+console.log(XMLHttpRequest);
+console.log(textStatus);
+console.log(errorThrown);
+
+
+
+}
+
+
+
+});
+}
 
     $(document).ready(function (){
         fetchAllCategory();
     });
-    function filterAllProducts(categoryName) {
-        $("#receipts tbody").empty();
-//console.log('http call: ' + uri + "/" + documentShareId)
-        $.ajax({
-            url: "http://localhost:8080/product/category-list?category=" + categoryName,
-            type: "GET",
-            contentType: "application/json;",
-            headers:
-                {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Credentials': 'true',
-                    'requester': '{"username": "admin@asd.com","authorities": "ROLE_ADMIN"}'
 
 
-
-                },
-
-
-
-
-            cache: false,
-            success: function (receipts) {
-//console.log(receipts);
-
-
-
-                $(receipts.data).each(function (index, item) {
-                    console.log("item " + item);
-//console.log(receipts[index]);
-
-
-
-                    $('#receipts tbody').append(
-                        '<tr><td>' + item.name +
-                        '</td><td>' + item.price +
-                        '</td><td>' + item.category +
-                        '</td><td>' + item.quantity +
-                        '</td></tr>'
-                    )
-
-
-
-                });
-
-
-
-
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log(XMLHttpRequest);
-                console.log(textStatus);
-                console.log(errorThrown);
-
-
-
-            }
-
-
-
-        });
-    }
-    $(document).ready(function (){
-        filterAllProducts();
-    });
     $(function (){
         // alert('test')
     });
-
 
 </script>
 </html>

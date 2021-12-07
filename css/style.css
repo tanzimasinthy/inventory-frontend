@@ -91,7 +91,7 @@ header, footer, article, nav, div {
 
 thead th {
     padding: 15px;
-    display: inline-block;
+    /*display: inline-block;*/
 }
 .button{
     padding: 10px 30px;
