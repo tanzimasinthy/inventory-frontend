@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="../css/style.css">
 </head>
 <body onload="fetchAllReceipts()">
-
+<p>Date: <input type="Date" id="datepicker"></p>
 
 <header id="pageHeader">
 	<h1>XYZ General Store</h1>
@@ -59,6 +59,8 @@
 
 <script src="../js/main.js"></script>
 <script>
+
+
 	function fetchAllReceipts() {
 		$("#receipts tbody").empty();
 		//console.log('http call: ' + uri + "/" + documentShareId)
@@ -88,7 +90,7 @@
 					}
 					$('#receipts tbody').append(
 							'<tr><td>' + item.billNo +
-							'</td><td>' + products +
+							'</td><td>' + item.items +
 							'</td><td>' + item.customerName +
 							'</td><td>' + item.mobileNumber +
 							'</td><td>' + item.total +
@@ -96,10 +98,12 @@
 							'</td></tr>'
 					)
 
+
 				});
 
 
 			},
+
 			error: function (XMLHttpRequest, textStatus, errorThrown) {
 				console.log(XMLHttpRequest);
 				console.log(textStatus);
@@ -107,7 +111,13 @@
 
 			}
 
+
 		});
 	}
+</script>
+<script>
+	$( function() {
+		$( "datepicker" ).DateTimeFormat();
+	} );
 </script>
 </html>

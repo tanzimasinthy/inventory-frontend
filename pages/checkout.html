@@ -184,12 +184,13 @@
             //console.log(receipts[index]);
 
             $('#checkout tbody').append(
-                '<tr><td>' + item.itemName +
-                '</td><td>' + item.quantity +
-                '</td><td>' + item.price +
-                '</td><td>' + item.total +
-                '</td><td>' + totalFinal +
-                '</td></tr>'
+                '<tr>' +
+                '<td>' + item.itemName + '</td>' +
+                '<td>' + item.quantity + '</td>' +
+                '<td>' + item.price + '</td>' +
+                '<td>' + item.total + '</td>' +
+                '<td>' + totalFinal + '</td>' +
+                '</tr>'
             )
             $("#grandTotal").html(totalFinal + totalFinal);
         });
@@ -234,11 +235,12 @@
                     //console.log(receipts[index]);
 
                     $('#receipts tbody').append(
-                        '<tr><td>' + item.name +
-                        '</td><td>' + item.price +
-                        '</td><td>' + item.category +
-                        '</td><td>' + item.quantity +
-                        '</td></tr>'
+                        '<tr>' +
+                        '<td>' + item.name + '</td>' +
+                        '<td>' + item.price + '</td>' +
+                        '<td>' + item.category + '</td>' +
+                        '<td>' + item.quantity + '</td>' +
+                        '</tr>'
                     )
 
                 });
