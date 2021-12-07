@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body onload="fetchAllProduct()">
@@ -85,7 +86,7 @@
                         '<td>' + item.price + '</td>' +
                         '<td>' + item.category + '</td>' +
                         '<td>' + item.quantity + '</td>' +
-                        '<td><a href="product-edit.html?id='+item.id+'">Update</a></td>' +
+                        '<td><a href="pages/product-edit.html?id='+item.id+'">Update</a></td>' +
                         '</tr>'
                     )
 

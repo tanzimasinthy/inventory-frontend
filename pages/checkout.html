@@ -63,8 +63,8 @@
 <div id="siteAds">
     <h3>CUSTOMER DETAILS</h3>
     <div class="customer_details">
-        <label for="user-name-field">Name</label>
-        <input type="text" class="form-control" name="customerName" id="user-name-field"
+        <label for="name-field">Name</label>
+        <input type="text" class="form-control" name="customerName" id="name-field"
                placeholder="Customer Name">
         <br>
         <br>
@@ -326,15 +326,16 @@
             success: function (receipts) {
                 //console.log(receipts);
 
+
                 $(receipts.data).each(function (index, item) {
                     console.log("item " + item);
                     //console.log(receipts[index]);
 
-                    $.each(item, function(val, text) {
+                   // $.each(item, function(val, text) {
                         $("#category").append(
-                            $('<option></option>').val(item.name).html(text)
+                            $('<option></option>').val(item.name).html(item.name)
                         );
-                    });
+                 //   });
 
                 });
 
@@ -357,5 +358,6 @@
     $(function (){
         // alert('test')
     });
+
 </script>
 </html>

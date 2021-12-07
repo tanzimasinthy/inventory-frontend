@@ -43,7 +43,7 @@ function fetchAllReceipts() {
 		$("#receipts tbody").empty();
         //console.log('http call: ' + uri + "/" + documentShareId)
         $.ajax({
-            url: "http://localhost:8089/transaction/transaction-list",
+            url: "http://localhost:8080/transaction/transaction-list",
             type: "GET",
             contentType: "application/json;",
 			headers:

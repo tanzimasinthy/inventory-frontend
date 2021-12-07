@@ -6,6 +6,9 @@
 		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
+
+	<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="../css/style.css">
 </head>
 <body onload="fetchAllReceipts()">
@@ -44,67 +47,67 @@
 		<li><a href="product.html">Add Product</a></li>
 		<li><a href="checkout.html">Checkout</a></li>
 		<li><a href="transactionLog.html">Transaction Log</a></li>
-		<li><a href="#">Edit Products</a></li>
-		<li><a href="#">Change Password</a></li>
-		<li><a href="#">Logout</a></li>
+		<li><a href="product-edit.html">Edit Products</a></li>
+		<li><a href="change-password.html">Change Password</a></li>
+		<li><a href="login.html">Logout</a></li>
 	</ul>
 
 </nav>
+</body>
 
 <footer id="pageFooter">@Copyright</footer>
 
 <script src="../js/main.js"></script>
 <script>
-function fetchAllReceipts() {
+	function fetchAllReceipts() {
 		$("#receipts tbody").empty();
-        //console.log('http call: ' + uri + "/" + documentShareId)
-        $.ajax({
-            url: "http://localhost:8080/transaction/transaction-list",
-            type: "GET",
-            contentType: "application/json;",
+		//console.log('http call: ' + uri + "/" + documentShareId)
+		$.ajax({
+			url: "http://localhost:8080/transaction/transaction-list",
+			type: "GET",
+			contentType: "application/json;",
 			headers:
-                    {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        'Access-Control-Allow-Origin': '*',
-                        'Access-Control-Allow-Credentials': 'true',
-                        'requester': '{"username": "admin@asd.com","authorities": "ROLE_ADMIN"}'
+					{
+						'Accept': 'application/json',
+						'Content-Type': 'application/json',
+						'Access-Control-Allow-Origin': '*',
+						'Access-Control-Allow-Credentials': 'true',
+						'requester': '{"username": "admin@asd.com","authorities": "ROLE_ADMIN"}'
 
-                    },
-            cache: false,
-            success: function (receipts) {
-                //console.log(receipts);
+					},
+			cache: false,
+			success: function (receipts) {
+				//console.log(receipts);
 
-                $(receipts.data).each(function (index, item) {
-                    console.log("item " + item);
-                    //console.log(receipts[index]);
+				$(receipts.data).each(function (index, item) {
+					console.log("item " + item);
+					//console.log(receipts[index]);
 					let products= "";
 					for(col = 0; col < item.items.length; col++) {
-					products = products + ", " + item.items[col]
+						products = products + ", " + item.items[col]
 					}
-                    $('#receipts tbody').append(
-                        '<tr><td>' + item.billNo +
-                        '</td><td>' + products +
-                        '</td><td>' + item.customerName +
-                        '</td><td>' + item.mobileNumber + 
-						'</td><td>' + item.total + 
-						'</td><td>' + item.date + 
-                        '</td></tr>'
-                    )
+					$('#receipts tbody').append(
+							'<tr><td>' + item.billNo +
+							'</td><td>' + products +
+							'</td><td>' + item.customerName +
+							'</td><td>' + item.mobileNumber +
+							'</td><td>' + item.total +
+							'</td><td>' + Date +
+							'</td></tr>'
+					)
 
-                });
+				});
 
 
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log(XMLHttpRequest);
-                console.log(textStatus);
-                console.log(errorThrown);
+			},
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
+				console.log(XMLHttpRequest);
+				console.log(textStatus);
+				console.log(errorThrown);
 
-            }
+			}
 
-        });
-    }
-    
+		});
+	}
 </script>
 </html>
